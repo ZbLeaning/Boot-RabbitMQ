@@ -1,0 +1,28 @@
+## springboot整合rabbitmq的基本配置
+spring:
+  rabbitmq:
+    addresses: 134.175.33.221:5672
+    username: guest
+    password: guest
+    ##连接到RabbitMQ的虚拟主机
+    virtual-host: /
+    ## 消费端配置
+    listener:
+      simple:
+        ##消费者的最小数量
+        concurrency: 5
+        ## manual:手动 ack（确认）
+        acknowledge-mode: manual
+        ##消费者的最大数量
+        max-concurrency: 10
+        ##在单个请求中处理的消息个数，应该大于等于事务数量
+        prefetch: 1
+  datasource:
+    url: jdbc:mysql://localhost:3306/rabbitmq?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: binzhang
+    driverClassName: com.mysql.jdbc.Driver
+server:
+  port: 8002
+  servlet:
+    context-path: /

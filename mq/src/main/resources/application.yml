@@ -1,0 +1,28 @@
+spring:
+    rabbitmq:
+        addresses: 134.175.33.221:5672
+        username: guest
+        password: guest
+        virtual-host: /
+        ##开启Publisher Confirm机制 采用消息确认模式，消息发送后异步等待Broker响应
+        publisher-confirms: true
+        ##开启Publisher Return机制
+        publisher-returns: true
+        template:
+            mandatory: true
+    datasource:
+        url: jdbc:mysql://localhost:3306/rabbitmq?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+        username: root
+        password: binzhang
+        driverClassName: com.mysql.cj.jdbc.Driver
+        type: com.alibaba.druid.pool.DruidDataSource
+server:
+    port: 8001
+    servlet:
+        context-path: /
+mybatis:
+    mapper-locations: classpath:mapping/*.xml
+    logging:
+        level:
+            tk:
+                mybatis: trace
